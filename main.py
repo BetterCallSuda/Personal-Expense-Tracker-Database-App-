@@ -51,4 +51,3 @@ def add_expense():
 
     print("✅ Expense added successfully")
 
-
