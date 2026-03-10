@@ -51,3 +51,19 @@ def add_expense():
 
     print("✅ Expense added successfully")
 
+
+# -----------------------------
+# VIEW EXPENSES
+# -----------------------------
+
+def view_expenses():
+
+    expenses = session.query(Expense).all()
+
+    print("\n📊 All Expenses\n")
+
+    for e in expenses:
+        print(f"{e.id} | {e.category} | {e.description} | ₹{e.amount}")
+
+    print()
+
