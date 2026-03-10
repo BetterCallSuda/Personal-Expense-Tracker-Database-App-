@@ -23,6 +23,7 @@ class Expense(Base):
 
     id = Column(Integer, primary_key=True)
     category = Column(String)
+    
     description = Column(String)
     amount = Column(Float)
 
