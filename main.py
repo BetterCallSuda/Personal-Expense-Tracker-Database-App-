@@ -13,3 +13,18 @@ session = Session()
 
 Base = declarative_base()
 
+# -----------------------------
+# DATABASE MODEL
+# -----------------------------
+
+class Expense(Base):
+
+    __tablename__ = "expenses"
+
+    id = Column(Integer, primary_key=True)
+    category = Column(String)
+    description = Column(String)
+    amount = Column(Float)
+
+Base.metadata.create_all(engine)
+
