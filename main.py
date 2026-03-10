@@ -67,3 +67,97 @@ def view_expenses():
 
     print()
 
+
+# -----------------------------
+# TOTAL SPENDING
+# -----------------------------
+
+def total_spending():
+
+    expenses = session.query(Expense).all()
+
+    total = sum(e.amount for e in expenses)
+
+    print(f"\n💰 Total Spending: ₹{total}\n")
+
+
+# -----------------------------
+# CATEGORY REPORT
+# -----------------------------
+
+def category_report():
+
+    category = input("Enter category: ")
+
+    expenses = session.query(Expense).filter_by(category=category).all()
+
+    total = sum(e.amount for e in expenses)
+
+    print(f"\nTotal spent on {category}: ₹{total}\n")
+
+
+# -----------------------------
+# DELETE EXPENSE
+# -----------------------------
+
+def delete_expense():
+
+    expense_id = int(input("Enter expense ID to delete: "))
+
+    expense = session.query(Expense).filter_by(id=expense_id).first()
+
+    if expense:
+
+        session.delete(expense)
+        session.commit()
+
+        print("🗑 Expense deleted")
+
+    else:
+
+        print("Expense not found")
+
+
+# -----------------------------
+# MAIN MENU
+# -----------------------------
+
+def main():
+
+    while True:
+
+        print("==== EXPENSE TRACKER ====")
+        print("1 Add Expense")
+        print("2 View Expenses")
+        print("3 Total Spending")
+        print("4 Category Report")
+        print("5 Delete Expense")
+        print("6 Exit")
+
+        choice = input("Select option: ")
+
+        if choice == "1":
+            add_expense()
+
+        elif choice == "2":
+            view_expenses()
+
+        elif choice == "3":
+            total_spending()
+
+        elif choice == "4":
+            category_report()
+
+        elif choice == "5":
+            delete_expense()
+
+        elif choice == "6":
+            print("Goodbye")
+            break
+
+        else:
+            print("Invalid option")
+
+
+if __name__ == "__main__":
+    main()
