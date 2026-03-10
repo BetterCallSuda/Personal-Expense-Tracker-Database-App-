@@ -29,3 +29,26 @@ class Expense(Base):
 
 Base.metadata.create_all(engine)
 
+
+# -----------------------------
+# ADD EXPENSE
+# -----------------------------
+
+def add_expense():
+
+    category = input("Category (food/travel/shopping/etc): ")
+    description = input("Description: ")
+    amount = float(input("Amount: "))
+
+    expense = Expense(
+        category=category,
+        description=description,
+        amount=amount
+    )
+
+    session.add(expense)
+    session.commit()
+
+    print("✅ Expense added successfully")
+
+
